@@ -13,7 +13,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): Response
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
 
@@ -34,8 +34,8 @@ class AuthenticatedSessionController extends Controller
         $request = request()->create('oauth/token', 'POST', $params);
         $response = app()->handle($request);
         $response = json_decode($response->getContent(), true);
-        dd($response);
-        // return response()->json($response);
+        // dd($response);
+        return response()->json($response);
     }
 
     /**
