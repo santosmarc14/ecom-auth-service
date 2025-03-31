@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Passport::enablePasswordGrant();
-
+        Passport::tokensExpireIn(now()->addDays(30));
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
-            return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
+            return config('app.frontend_url') . "/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
     }
 }
